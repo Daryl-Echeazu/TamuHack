@@ -1,0 +1,170 @@
+/* General resets for margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Varela Round", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #f1f1f1;
+}
+
+body {
+  background-color: #111111;
+  overflow: hidden;
+}
+
+/* Navbar styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  color: white;
+}
+
+#logo {
+  display: flex;
+  align-items: center;
+}
+
+#logo:hover {
+  cursor: pointer;
+  transition: 0.27s ease-in-out;
+  color: red;
+  scale: 1.06;
+}
+
+#logo img {
+  margin-right: 10px; /* Space between image and text */
+}
+
+#logo h1 {
+  font-size: 30px;
+  margin: 0;
+}
+
+.nav-items {
+  list-style: none;
+  display: flex;
+}
+
+.nav-items a {
+  color: white;
+  text-decoration: none;
+  font-size: 19px;
+  text-align: center;
+  padding: 10px;
+}
+
+/* Optional: Hover effect for nav items */
+.nav-items a:hover {
+  text-decoration: none;
+  transition: 0.4s ease-in-out;
+  color: red;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.header {
+  display: flex;
+  font-size: 2rem;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 50px;
+}
+
+.header-image {
+  grid-column: 1 / -1;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  object-fit: contain;
+  z-index: -1;
+}
+.header-image img {
+  min-height: 60%;
+  max-height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+hr {
+  transform: scaleX(0);
+  animation: scaleUpHorizontally 2.5s forwards cubic-bezier(0.85, 0, 0.15, 1);
+}
+
+@keyframes scaleUpHorizontally {
+  to {
+    transform: scaleX(1);
+  }
+}
+.intro {
+  display: flex;
+  font-size: 1.45rem;
+  padding-top: 4rem;
+  padding-left: 2rem;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.bigBreak hr {
+  margin: 3rem auto;
+  width: 55%;
+}
+.bigBreak img {
+  width: 20%;
+  height: 30%;
+  margin: 3rem auto;
+  object-fit: cover;
+  object-position: 100% center;
+}
+
+.row {
+  text-align: center;
+  word-wrap: break-word;
+  background-color: #111111;
+}
+
+#image-track {
+  display: flex;
+  justify-content: center;
+  user-select: none;
+}
+
+#image-track .image {
+  width: 300px;
+  height: 400px;
+  object-fit: cover;
+  box-shadow: 4px 4px 8px rgb(0, 0, 0);
+  transition: transform 0.37s ease-in-out;
+  border-radius: 0.5rem;
+  margin: 18px;
+  display: block;
+}
+
+#image-track .image:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.intro h1,
+p {
+  width: 55ch;
+  animation: typing 5s, blink 0.5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}

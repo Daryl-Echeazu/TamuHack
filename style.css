@@ -1,0 +1,78 @@
+/* General resets for margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: white;
+}
+body {
+  background-color: #111111;
+}
+
+/* Navbar styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #111111;
+  color: white;
+}
+
+#logo {
+  display: flex;
+  align-items: center;
+}
+
+#logo:hover {
+  cursor: pointer;
+  transition: 0.25s ease-in-out;
+  color: red;
+  scale: 1.05;
+}
+
+#logo img {
+  margin-right: 10px; /* Space between image and text */
+}
+
+#logo h1 {
+  font-size: 30px;
+  margin: 0;
+}
+
+.nav-items {
+  list-style: none;
+  display: flex;
+}
+
+.nav-items li {
+  margin: 0;
+}
+
+.nav-items a {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  text-align: center;
+  padding: 10px;
+}
+
+/* Optional: Hover effect for nav items */
+.nav-items a:hover {
+  text-decoration: none;
+  transition: 0.35s ease-in-out;
+  color: red;
+}
+
+.card {
+  display: flex;
+  flex-flow: column wrap;
+  border-radius: 3rem;
+  background-color: #2f2f2f;
+  font-size: x-large;
+}
+.card h1 {
+  padding: 5rem;
+  color: white;
+}
