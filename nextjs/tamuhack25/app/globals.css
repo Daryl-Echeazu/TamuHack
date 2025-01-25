@@ -19,3 +19,12 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@font-face {
+  font-family: "LogoFont";
+  src: url("/public/fontlogo.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
