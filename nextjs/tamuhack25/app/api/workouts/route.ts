@@ -1,28 +1,49 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// Sample data (you can replace this with Supabase queries later)
-let macros = [
-  { id: 1, userId: "123", protein: 150, carbs: 200, fats: 50 },
-  { id: 2, userId: "456", protein: 100, carbs: 150, fats: 40 },
+let workouts = [
+  { id: 1, userId: "123", name: "Leg Day", exercises: ["Squats", "Lunges"] },
+  {
+    id: 2,
+    userId: "456",
+    name: "Chest Day",
+    exercises: ["Bench Press", "Push-ups"],
+  },
 ];
 
-// Handle GET and POST requests
+// Handle GET, POST, DELETE requests
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const userId = searchParams.get("userId");
 
   if (userId) {
-    const userMacros = macros.filter((macro) => macro.userId === userId);
-    return NextResponse.json(userMacros);
+    const userWorkouts = workouts.filter(
+      (workout) => workout.userId === userId
+    );
+    return NextResponse.json(userWorkouts);
   }
 
-  return NextResponse.json(macros);
+  return NextResponse.json(workouts);
 }
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  const newMacro = { id: macros.length + 1, ...body };
-  macros.push(newMacro);
+  const newWorkout = { id: workouts.length + 1, ...body };
+  workouts.push(newWorkout);
 
-  return NextResponse.json(newMacro, { status: 201 });
+  return NextResponse.json(newWorkout, { status: 201 });
+}
+
+export async function DELETE(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const workoutId = searchParams.get("id");
+
+  if (workoutId) {
+    workouts = workouts.filter((workout) => workout.id !== parseInt(workoutId));
+    return NextResponse.json({ message: "Workout deleted" });
+  }
+
+  return NextResponse.json(
+    { error: "Workout ID not provided" },
+    { status: 400 }
+  );
 }
