@@ -9,23 +9,25 @@ export default function Navbar() {
         </h1>
         <ul className="flex space-x-4">
           <li>
-            <Link href="/login" className="hover:underline">
-              Login
-            </Link>
-          </li>
-          <li>
-            <Link href="/dashboard/id" className="hover:underline"> # Fix id
+            <Link href="/dashboard" className="hover:underline">
+              {" "}
+              {/* Fix dynamic href issue ([id]) */}
               Dashboard
             </Link>
           </li>
           <li>
-            <Link href="/workout" className="hover:underline">
-              Workouts
+            <Link href="/nutrition" className="hover:underline">
+              Nutrition
             </Link>
           </li>
           <li>
-            <Link href="/community" className="hover:underline">
+            <Link href="/workouts" className="hover:underline">
               Community
+            </Link>
+          </li>
+          <li>
+            <Link href="/forum" className="hover:underline">
+              Forum
             </Link>
           </li>
         </ul>
