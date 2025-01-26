@@ -2,22 +2,49 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { createClient } from "@supabase/supabase-js";
+import { useRouter } from "next/navigation";
+
+// Initialize Supabase client
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 export default function Login() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Logging in user:", formData);
-    // Add login logic here (e.g., API call)
+    setLoading(true);
+    setError(null);
+
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email: formData.email,
+        password: formData.password,
+      });
+
+      if (error) throw error;
+
+      // Redirect to dashboard after successful login
+      router.push("/dashboard");
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -97,12 +124,18 @@ export default function Login() {
               />
             </div>
 
+            {/* Error Message */}
+            {error && <p className="text-red-500 text-sm">{error}</p>}
+
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition-colors"
+              disabled={loading}
+              className={`w-full bg-blue-600 text-white py-2 rounded-md transition-colors ${
+                loading ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-700"
+              }`}
             >
-              Login
+              {loading ? "Logging in..." : "Login"}
             </button>
           </form>
 
