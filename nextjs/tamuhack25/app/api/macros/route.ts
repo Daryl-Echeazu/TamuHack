@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 // Sample data (you can replace this with Supabase queries later)
-let macros = [
+const macros = [
   { id: 1, userId: "123", protein: 150, carbs: 200, fats: 50 },
   { id: 2, userId: "456", protein: 100, carbs: 150, fats: 40 },
 ];

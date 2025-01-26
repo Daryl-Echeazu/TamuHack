@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Activity, BarChart3, Heart, LineChart, Medal, Target, Trophy, Users } from "lucide-react";
+import { BarChart3, Heart, LineChart, Medal, Target, Trophy, Users } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import Image from "next/image";
 
