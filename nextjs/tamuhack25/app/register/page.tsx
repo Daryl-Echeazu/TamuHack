@@ -39,7 +39,11 @@ export default function Register() {
 
       alert("Registration successful! Please check your email to confirm your account.");
     } catch (err) {
-      setError(err.message);
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unknown error occurred.");
+      }
     } finally {
       setLoading(false);
     }
@@ -53,7 +57,11 @@ export default function Register() {
 
       if (error) throw error;
     } catch (err) {
-      setError(err.message);
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unknown error occurred.");
+      }
     }
   };
 
