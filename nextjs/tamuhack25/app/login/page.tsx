@@ -3,9 +3,8 @@
 import Image from "next/image";
 import { useState } from "react";
 
-export default function Register() {
+export default function Login() {
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     password: "",
   });
@@ -17,8 +16,8 @@ export default function Register() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Registering user:", formData);
-    // Add registration logic here (e.g., API call)
+    console.log("Logging in user:", formData);
+    // Add login logic here (e.g., API call)
   };
 
   return (
@@ -56,30 +55,11 @@ export default function Register() {
       {/* Main Content */}
       <main className="flex flex-1 flex-col items-center justify-center p-6">
         <section className="text-center py-10">
-          <h1 className="text-4xl font-bold text-gray-800 mb-6">
-            Create an Account
-          </h1>
+          <h1 className="text-4xl font-bold text-gray-800 mb-6">Welcome Back!</h1>
           <form
             onSubmit={handleSubmit}
             className="flex flex-col gap-6 w-full max-w-md bg-white p-6 rounded-lg shadow-md"
           >
-            {/* Name */}
-            <div className="flex flex-col">
-              <label htmlFor="name" className="text-sm font-medium text-gray-600">
-                Name
-              </label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                value={formData.name}
-                onChange={handleInputChange}
-                className="mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                placeholder="Enter your name"
-                required
-              />
-            </div>
-
             {/* Email */}
             <div className="flex flex-col">
               <label htmlFor="email" className="text-sm font-medium text-gray-600">
@@ -112,7 +92,7 @@ export default function Register() {
                 value={formData.password}
                 onChange={handleInputChange}
                 className="mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                placeholder="Create a password"
+                placeholder="Enter your password"
                 required
               />
             </div>
@@ -122,9 +102,20 @@ export default function Register() {
               type="submit"
               className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition-colors"
             >
-              Register
+              Login
             </button>
           </form>
+
+          {/* Register Link */}
+          <p className="mt-4 text-sm text-gray-600">
+            Don&apos;t have an account?{" "}
+            <a
+              href="/register"
+              className="text-blue-600 hover:underline font-medium"
+            >
+              Sign up for GymDex!
+            </a>
+          </p>
         </section>
       </main>
 

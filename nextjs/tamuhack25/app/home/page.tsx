@@ -15,23 +15,21 @@ export default function Home() {
           <h1 className="text-xl font-bold font-fontlogo">Gymdex</h1>
         </div>
         <div className="flex gap-6">
-          <a
-            href="/register"
-            className="hover:underline text-sm sm:text-base"
-          >
+          <a href="/home" className="hover:underline text-sm sm:text-base">
+            Home
+          </a>
+          <a href="/register" className="hover:underline text-sm sm:text-base">
             Register
           </a>
           <a href="/login" className="hover:underline text-sm sm:text-base">
             Login
           </a>
           <a
-  href="/about"
-  className="text-sm sm:text-base h-8 px-4 border border-gray-400 rounded-full hover:bg-gray-100 transition-colors flex items-center -mt-1"
->
-  About Us
-</a>
-
-
+            href="/about"
+            className="text-sm sm:text-base h-8 px-4 border border-gray-400 rounded-full hover:bg-gray-100 transition-colors flex items-center -mt-1"
+          >
+            About Us
+          </a>
         </div>
       </nav>
 
@@ -44,8 +42,7 @@ export default function Home() {
           <p className="text-lg text-gray-600 mb-8">
             Your ultimate platform to track your fitness goals and achieve a healthier life.
           </p>
-          <div className="flex gap-4">
-          </div>
+          <div className="flex gap-4"></div>
         </section>
 
         <section className="flex flex-col sm:flex-row gap-10 items-center justify-center">
