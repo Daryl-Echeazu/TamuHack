@@ -2,6 +2,13 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { createClient } from "@supabase/supabase-js";
+
+// Initialize Supabase client
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -9,16 +16,45 @@ export default function Register() {
     email: "",
     password: "",
   });
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Registering user:", formData);
-    // Add registration logic here (e.g., API call)
+    setLoading(true);
+    setError(null);
+
+    try {
+      const { error } = await supabase.auth.signUp({
+        email: formData.email,
+        password: formData.password,
+      });
+
+      if (error) throw error;
+
+      alert("Registration successful! Please check your email to confirm your account.");
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGoogleAuth = async () => {
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+      });
+
+      if (error) throw error;
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (
@@ -117,14 +153,28 @@ export default function Register() {
               />
             </div>
 
+            {/* Error Message */}
+            {error && <p className="text-red-500 text-sm">{error}</p>}
+
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition-colors"
+              disabled={loading}
+              className={`w-full bg-blue-600 text-white py-2 rounded-md transition-colors ${
+                loading ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-700"
+              }`}
             >
-              Register
+              {loading ? "Registering..." : "Register"}
             </button>
           </form>
+
+          {/* Google Auth */}
+          <button
+            onClick={handleGoogleAuth}
+            className="mt-4 w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700 transition-colors"
+          >
+            Sign Up with Google
+          </button>
         </section>
       </main>
 
